@@ -5,34 +5,35 @@
 
 int main(int argc, char* argv[])
 {
-	int add = 0;
-	int sub = 0;
-	int mult = 0;
-	int div = 0;
-	
+	int addFlag = 0;
+	int subFlag = 0;
+	int multFlag = 0;
+	int divFlag = 0;
+	int numOpts = 0;	
 	processOpts
 	(
 		&argc,
 		argv,
-		&add,
-		&sub,
-		&mult,
-		&div
+		&addFlag,
+		&subFlag,
+		&multFlag,
+		&divFlag,
+		&numOpts
 	);
-	argv += 1;
-	if (add == 1)
-		printf("%f", sum(argc, argv));
-	else if (sub == 1)
-		printf("%f", difference(argc, argv));
-	else if (mult == 1)
-		printf("%f", product(argc, argv));
-	else if (div == 1)
-		printf("%f", quotient (argc, argv));
+	argv += numOpts;
+	if (addFlag == 1)
+		printf("%-12s %.3f\n", "Sum:", add(argc, argv));
+	if (subFlag == 1)
+		printf("%-12s %.3f\n", "Difference:", sub(argc, argv));
+	if (multFlag == 1)
+		printf("%-12s %.3f\n", "Product:", mult(argc, argv));
+	if (divFlag == 1)
+		printf("%-12s %.3f\n", "Quotient:", divide(argc, argv));
 	return 0;
 }
 
 
-double sum (int numValues, char* values[])
+double add (int numValues, char* values[])
 {
 	double sum = 0.0;
 	int index;
@@ -43,7 +44,7 @@ double sum (int numValues, char* values[])
 	return sum;
 }
 
-double difference (int numValues, char* values[])
+double sub (int numValues, char* values[])
 {
 	double diff = 0.0;
 	if (numValues > 0)
@@ -58,7 +59,7 @@ double difference (int numValues, char* values[])
 	return diff;
 }
 
-double product (int numValues, char* values[])
+double mult (int numValues, char* values[])
 {
 	double prod = 0.0;
 	if (numValues > 0)
@@ -73,7 +74,7 @@ double product (int numValues, char* values[])
 	return prod;
 }
 
-double quotient (int numValues, char* values[])
+double divide (int numValues, char* values[])
 {
 	double quot = 0.0;
 	if (numValues > 0)

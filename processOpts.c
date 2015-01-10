@@ -4,7 +4,7 @@
 
 #include "processOpts.h"
 
-void processOpts(int* argc, char* argv[], int* add, int* sub, int* mult, int* div)
+void processOpts(int* argc, char* argv[], int* add, int* sub, int* mult, int* div, int* numOpts)
 {
 	char* progName = argv[0];
 	if (*argc == 1)
@@ -52,17 +52,17 @@ void processOpts(int* argc, char* argv[], int* add, int* sub, int* mult, int* di
 
 	}
 	*argc -= optind;
-	argv += optind;
+	*numOpts += optind;
 }
 
 void usage(char* progName, FILE *file)
 {
-	fprintf(file, "Usage: %s [-a] [-s] [-m] [-d]\n", progName);
+	fprintf(file, "Usage: %s [-a] [-s] [-m] [-d] [numbers...]\n", progName);
 	fprintf(file, "	--usage:	print this info and exit\n");
-	fprintf(file, "	-a --add	add numbers from stdin and print sum\n");
-	fprintf(file, " -s --subtract	subtract numbers from stdin and print difference\n");
-	fprintf(file, " -m --multiply	multiply numbers from stdin and print product\n");
-	fprintf(file, " -d --divide	divide numbers from stdin and print quotient\n");
+	fprintf(file, "	-a --add:	add numbers from stdin and print sum\n");
+	fprintf(file, "	-s --subtract:	subtract numbers from stdin and print difference\n");
+	fprintf(file, "	-m --multiply:	multiply numbers from stdin and print product\n");
+	fprintf(file, "	-d --divide:	divide numbers from stdin and print quotient\n");
 	if (file == stdout)
 		exit(0);
 	else
